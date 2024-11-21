@@ -35,10 +35,13 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
 import org.springframework.web.util.WebUtils;
 
+import cn.dev33.satoken.stp.StpUtil;
+
 public class LocaleChangeInterceptor implements AsyncHandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        StpUtil.switchTo(BaseConstant.ADMIN_ID);
         Cookie cookie = WebUtils.getCookie(request, BaseConstant.LOCALE_LANGUAGE_COOKIE);
         if (Asserts.isNotNull(cookie)) {
             // Proceed in cookie

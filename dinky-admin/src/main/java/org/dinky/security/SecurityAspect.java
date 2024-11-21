@@ -51,8 +51,8 @@ public class SecurityAspect {
 
         // mask sql for explain
         // openapi/explainSql
-        if (returnValue instanceof Result<?> && ((Result<?>) returnValue).getData() instanceof ExplainResult) {
-            ExplainResult exp = ((ExplainResult) ((Result<?>) returnValue).getData());
+        if (returnValue instanceof Result<?> && ((Result<?>) returnValue).getContent() instanceof ExplainResult) {
+            ExplainResult exp = ((ExplainResult) ((Result<?>) returnValue).getContent());
             List<SqlExplainResult> sqlExplainResults = exp.getSqlExplainResults();
             if (CollectionUtils.isEmpty(sqlExplainResults)) {
                 return;
@@ -64,12 +64,12 @@ public class SecurityAspect {
         }
 
         // /api/studio/explainSql
-        if (returnValue instanceof Result<?> && ((Result<?>) returnValue).getData() instanceof List<?>) {
-            List<?> list = (List<?>) ((Result<?>) returnValue).getData();
+        if (returnValue instanceof Result<?> && ((Result<?>) returnValue).getContent() instanceof List<?>) {
+            List<?> list = (List<?>) ((Result<?>) returnValue).getContent();
             if (list.isEmpty() || !(list.get(0) instanceof SqlExplainResult)) {
                 return;
             }
-            List<SqlExplainResult> sqlExplainResults = ((Result<List<SqlExplainResult>>) returnValue).getData();
+            List<SqlExplainResult> sqlExplainResults = ((Result<List<SqlExplainResult>>) returnValue).getContent();
             if (CollectionUtils.isEmpty(sqlExplainResults)) {
                 return;
             }
@@ -93,8 +93,8 @@ public class SecurityAspect {
         }
 
         // mask statement for history
-        if (returnValue instanceof Result<?> && ((Result<?>) returnValue).getData() instanceof History) {
-            History history = ((History) ((Result<?>) returnValue).getData());
+        if (returnValue instanceof Result<?> && ((Result<?>) returnValue).getContent() instanceof History) {
+            History history = ((History) ((Result<?>) returnValue).getContent());
             if (null != history) {
                 String statement = history.getStatement();
                 history.setStatement(mask(statement, SENSITIVE, MASK));
@@ -102,8 +102,8 @@ public class SecurityAspect {
         }
 
         // /getJobInfoDetail
-        if (returnValue instanceof Result<?> && ((Result<?>) returnValue).getData() instanceof JobInfoDetail) {
-            JobInfoDetail jobInfoDetail = ((JobInfoDetail) ((Result<?>) returnValue).getData());
+        if (returnValue instanceof Result<?> && ((Result<?>) returnValue).getContent() instanceof JobInfoDetail) {
+            JobInfoDetail jobInfoDetail = ((JobInfoDetail) ((Result<?>) returnValue).getContent());
             History history = jobInfoDetail.getHistory();
             if (null != history) {
                 String statement = history.getStatement();

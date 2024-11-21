@@ -55,7 +55,7 @@ public class Result<T> implements Serializable {
             required = true,
             allowEmptyValue = true,
             example = "[]")
-    private T data;
+    private T content;
 
     @ApiModelProperty(
             value = "Result Code",
@@ -104,8 +104,8 @@ public class Result<T> implements Serializable {
         this.msg = msg;
     }
 
-    public void setData(T data) {
-        this.data = data;
+    public void setContent(T content) {
+        this.content = content;
     }
 
     public Result(Status status) {
@@ -115,10 +115,10 @@ public class Result<T> implements Serializable {
         }
     }
 
-    public Result(Integer code, String msg, T data) {
+    public Result(Integer code, String msg, T content) {
         this.code = code;
         this.msg = msg;
-        this.data = data;
+        this.content = content;
     }
 
     public static <T> Result<T> succeed(String msg) {

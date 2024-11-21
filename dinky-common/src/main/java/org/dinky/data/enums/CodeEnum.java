@@ -25,8 +25,8 @@ package org.dinky.data.enums;
  * @since 2021/5/28 19:58
  */
 public enum CodeEnum {
-    SUCCESS(0),
-    ERROR(1),
+    SUCCESS(200),
+    ERROR(-1),
 
     EXCEPTION(5),
     PARAMS_ERROR(6),
