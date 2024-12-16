@@ -50,6 +50,6 @@ COPY --from=flink-base  /opt/flink/opt/flink-table-planner*.jar /opt/dinky/exten
 
 RUN mkdir /opt/dinky/customJar && chmod -R 777 /opt/dinky/
 
-EXPOSE 8888
+EXPOSE 9039
 
 CMD  ./auto.sh startOnPending

@@ -2,12 +2,10 @@ org.apache.flink.configuration.CoreOptions
 org.apache.flink.configuration.RestOptions
 org.apache.flink.configuration.PipelineOptions
 org.apache.flink.configuration.SecurityOptions
-org.apache.flink.configuration.YarnConfigOptions
 org.apache.flink.configuration.WebOptions
 org.apache.flink.configuration.JobManagerOptions
 org.apache.flink.configuration.TaskManagerOptions
 org.apache.flink.configuration.HighAvailabilityOptions
-org.apache.flink.configuration.KubernetesConfigOptions
 org.apache.flink.configuration.ClusterOptions
 org.apache.flink.configuration.StateBackendOptions
 org.apache.flink.configuration.QueryableStateOptions
@@ -28,10 +26,8 @@ org.apache.flink.configuration.RestartStrategyOptions
 org.apache.flink.configuration.BatchExecutionOptions
 org.apache.flink.streaming.api.environment.ExecutionCheckpointingOptions
 org.apache.flink.yarn.configuration.YarnConfigOptions
-org.apache.flink.configuration.YarnConfigOptions
 org.apache.flink.kubernetes.configuration.KubernetesConfigOptions
 org.apache.flink.kubernetes.configuration.KubernetesHighAvailabilityOptions
-org.apache.flink.configuration.KubernetesConfigOptions
 org.apache.flink.configuration.DeploymentOptions
 org.apache.flink.python.PythonOptions
 org.apache.flink.table.api.config.TableConfigOptions

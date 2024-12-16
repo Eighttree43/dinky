@@ -27,6 +27,10 @@ import org.dinky.utils.FlinkConfigOptionsUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -49,6 +53,7 @@ public class FlinkServiceImpl implements FlinkService {
             List<FlinkConfigOption> flinkConfigOptions = FlinkConfigOptionsUtils.loadOptionsByClassName(name);
             String binlogGroup = FlinkConfigOptionsUtils.parsedBinlogGroup(name);
             List<CascaderVO> child = flinkConfigOptions.stream()
+                    .filter(distinctByKey(FlinkConfigOption::getKey))
                     .map(conf -> new CascaderVO(conf.getKey(), conf.getKey()))
                     .collect(Collectors.toList());
             CascaderVO cascaderVO = new CascaderVO(binlogGroup, child);
@@ -66,5 +71,9 @@ public class FlinkServiceImpl implements FlinkService {
 
         dataList.add(cascaderVO);
         return dataList;
+    }
+    private static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+        Set<Object> seen = ConcurrentHashMap.newKeySet();
+        return t -> seen.add(keyExtractor.apply(t));
     }
 }
